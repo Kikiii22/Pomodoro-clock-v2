@@ -25,12 +25,6 @@ export class PomodoroService {
      this.musicPause.loop=true;
    }
 
-   getTime():string
-   {
-     const minutes = Math.floor(this.totalSec / 60).toString().padStart(2, '0');
-     const seconds = (this.totalSec % 60).toString().padStart(2, '0');
-     return `${minutes}:${seconds}`;
-   }
    stopMusic()
    {
      this.musicStudy.pause();
