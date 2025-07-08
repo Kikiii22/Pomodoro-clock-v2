@@ -1,0 +1,10 @@
+.pomodoro{
+  text-align: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f78da7, #c471ed, #12c2e9);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  padding-top: 40px;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+}

@@ -1,0 +1,11 @@
+<div class="buttons">
+  <button [class.active]="selected=='focus'"
+          (click)="setMode('focus')">
+           Focus now !</button>
+  <button [class.active]="selected=='short'"
+          (click)="setMode('short')">
+           Short Break</button>
+  <button [class.active]="selected=='long'"
+          (click)="setMode('long')">
+           Long Break</button>
+</div>

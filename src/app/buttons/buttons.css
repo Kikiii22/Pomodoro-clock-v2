@@ -1,0 +1,13 @@
+.buttons button {
+  margin: 9px;
+  padding: 10px 25px;
+  font-size: 1rem;
+  background-color: white;
+  color: rebeccapurple;
+  border:purple;
+  border-radius: 11px;
+  box-shadow: 0 4px 6px deeppink;
+}
+.buttons button:hover {
+  transform: scale(1.1);
+}

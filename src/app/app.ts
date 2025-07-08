@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Pomodoro} from './pomodoro/pomodoro';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [Pomodoro],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected title = 'pomodoro';
 }
