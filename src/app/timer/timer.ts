@@ -12,7 +12,8 @@ import {FormsModule} from '@angular/forms';
 })
 export class Timer implements OnInit {
 
-  constructor(private service: PomodoroService) {}
+  constructor(private service: PomodoroService) {
+  }
 
   @Input() currentmode: 'focus' | 'short' | 'long' = 'focus';
   customMinutes: number = 25;
@@ -24,7 +25,7 @@ export class Timer implements OnInit {
   }
 
   setCustomTime() {
-      this.service.setTime(this.customMinutes,this.currentmode);
+    this.service.setTime(this.customMinutes, this.currentmode);
 
   }
 }

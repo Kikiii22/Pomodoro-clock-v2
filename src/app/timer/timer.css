@@ -1,9 +1,10 @@
-.timer{
+.timer {
   font-size: 120px;
   font-weight: bold;
   letter-spacing: 4px;
   margin: 30px 0;
 }
+
 .custom-time {
   margin-top: 20px;
   color: white;

@@ -7,7 +7,8 @@ import {PomodoroService} from '../pomodoro-service';
   styleUrl: './buttons.css'
 })
 export class Buttons {
-  constructor(private service:PomodoroService) {}
+  constructor(private service: PomodoroService) {
+  }
 
   start() {
     this.service.start();
