@@ -6,6 +6,8 @@ import {EventEmitter, Injectable} from '@angular/core';
 export class PomodoroService {
 
   totalSec: number = 0;
+  session = 25;
+  break = 5;
   intervalId: any;
   running = false;
   originalTime: number = 0;
@@ -13,7 +15,7 @@ export class PomodoroService {
   timerDone = new EventEmitter<void>();
   musicStudy = new Audio('pausemusic.mp3')
   musicPause = new Audio('music.mp3')
-  currentMode: string = 'focus';
+  currentMode: 'session' | 'break' = 'session';
 
   emitTime() {
     const minutes = Math.floor(this.totalSec / 60).toString().padStart(2, '0');
@@ -26,19 +28,22 @@ export class PomodoroService {
     this.musicPause.loop = true;
   }
 
+  setSession(length: number) {
+    this.originalTime = length * 60;
+    this.totalSec = this.originalTime;
+    this.emitTime();
+  }
+
+  setBreak(length: number) {
+    this.break = length;
+    //this.emitTime();
+  }
+
   stopMusic() {
     this.musicStudy.pause();
     this.musicPause.pause();
   }
 
-  setTime(minutes: number, mode: 'focus' | 'short' | 'long') {
-    this.stop();
-    this.currentMode = mode;
-    this.stopMusic();
-    this.totalSec = minutes * 60;
-    this.originalTime = this.totalSec;
-    this.emitTime();
-  }
 
   start() {
     if (this.running) return;
@@ -52,6 +57,9 @@ export class PomodoroService {
         this.stop();
         this.stopMusic();
         this.timerDone.emit();
+        this.switchMode();
+        this.start();
+
       }
     }, 1000);
   }
@@ -71,10 +79,22 @@ export class PomodoroService {
   }
 
   playMusic() {
-    if (this.currentMode == 'focus') {
+    if (this.currentMode == 'session') {
       this.musicStudy.play();
     } else {
       this.musicPause.play();
     }
+  }
+
+  private switchMode() {
+    if (this.currentMode === 'session') {
+      this.currentMode = 'break';
+      this.totalSec = this.break * 60;
+    } else {
+      this.currentMode = 'session';
+      this.totalSec = this.session * 60;
+    }
+    this.originalTime = this.totalSec;
+    this.emitTime();
   }
 }

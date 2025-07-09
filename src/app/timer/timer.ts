@@ -1,31 +1,17 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {PomodoroService} from '../pomodoro-service';
-import {FormsModule} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { PomodoroService } from '../pomodoro-service';
 
 @Component({
   selector: 'app-timer',
-  imports: [
-    FormsModule
-  ],
   templateUrl: './timer.html',
-  styleUrl: './timer.css'
+  styleUrls: ['./timer.css']
 })
-export class Timer implements OnInit {
+export class TimerComponent implements OnInit {
+  display: string = '25:00';
 
-  constructor(private service: PomodoroService) {
-  }
+  constructor(private service: PomodoroService) {}
 
-  @Input() currentmode: 'focus' | 'short' | 'long' = 'focus';
-  customMinutes: number = 25;
-  display: string = "25:00"
-
-  ngOnInit(): void {
-    this.service.setTime(25, 'focus')
-    this.service.timeUpdated.subscribe(time => this.display = time);
-  }
-
-  setCustomTime() {
-    this.service.setTime(this.customMinutes, this.currentmode);
-
+  ngOnInit() {
+    this.service.timeUpdated.subscribe(t => this.display = t);
   }
 }
