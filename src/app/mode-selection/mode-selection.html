@@ -1,15 +1,11 @@
-<div class="session">
-  <div class="controls">
-    <p>Break Length</p>
-    <button (click)="decrease('break')">⬇</button>
-    <span>{{ breakLength }}</span>
-    <button (click)="increase('break')">⬆</button>
-  </div>
-  <div class="controls">
-    <p>Session Length</p>
-    <button (click)="decrease('session')">⬇</button>
-    <span>{{ sessionLength }}</span>
-    <button (click)="increase('session')">⬆</button>
-  </div>
+<div class="buttons">
+  <button [class.active]="selected=='focus'"
+          (click)="setMode('focus')">
+           Focus now !</button>
+  <button [class.active]="selected=='short'"
+          (click)="setMode('short')">
+           Short Break</button>
+  <button [class.active]="selected=='long'"
+          (click)="setMode('long')">
+           Long Break</button>
 </div>
-

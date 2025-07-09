@@ -1,4 +1,4 @@
-.controls button {
+.buttons button {
   padding: 10px 20px;
   margin: 0 10px;
   font-size: 1rem;
@@ -9,17 +9,7 @@
   cursor: pointer;
 }
 
-.controls button:hover {
+.buttons .active {
   background: white;
   color: rebeccapurple;
-}
-
-.session {
-  display: flex;
-  justify-content: center
-}
-
-.controls {
-  padding: 1em;
-
 }

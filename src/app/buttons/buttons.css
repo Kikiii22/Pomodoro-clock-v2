@@ -7,7 +7,6 @@
   border:purple;
   border-radius: 11px;
   box-shadow: 0 4px 6px deeppink;
-  cursor:pointer;
 }
 .buttons button:hover {
   transform: scale(1.1);

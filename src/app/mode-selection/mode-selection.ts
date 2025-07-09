@@ -1,5 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {PomodoroService} from '../pomodoro-service';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-mode-selection',
@@ -7,30 +6,11 @@ import {PomodoroService} from '../pomodoro-service';
   styleUrl: './mode-selection.css'
 })
 export class ModeSelection {
-  sessionLength = 25;
-  breakLength = 5;
+  @Output() modeSelected = new EventEmitter<'focus' | 'short' | 'long'>();
+  selected: 'focus' | 'short' | 'long' = 'focus';
 
-  constructor(private service: PomodoroService) {
-    this.service.setSession(this.sessionLength);
-  }
-///moze vo sefvis da stais
-  increase(type: 'session' | 'break') {
-    if (type === 'session' && this.sessionLength < 60) {
-      this.sessionLength++;
-      this.service.setSession(this.sessionLength);
-    } else if (type === 'break' && this.breakLength < 60) {
-      this.breakLength++;
-      this.service.setBreak(this.breakLength);
-    }
-  }
-
-  decrease(type: 'session' | 'break') {
-    if (type === 'session' && this.sessionLength > 1) {
-      this.sessionLength--;
-      this.service.setSession(this.sessionLength);
-    } else if (type === 'break' && this.breakLength > 1) {
-      this.breakLength--;
-      this.service.setBreak(this.breakLength);
-    }
+  setMode(mode: 'focus' | 'short' | 'long') {
+    this.selected = mode;
+    this.modeSelected.emit(mode);
   }
 }
