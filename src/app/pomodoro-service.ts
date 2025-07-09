@@ -8,13 +8,15 @@ export class PomodoroService {
   totalSec: number = 0;
   session = 25;
   break = 5;
+  musicPlaying: boolean = true;
   intervalId: any;
   running = false;
   originalTime: number = 0;
   timeUpdated = new EventEmitter<string>();
   timerDone = new EventEmitter<void>();
-  musicStudy = new Audio('pausemusic.mp3')
-  musicPause = new Audio('music.mp3')
+  musicStudy = new Audio('pausemusic.mp3');
+  musicPause = new Audio('music.mp3');
+  bell = new Audio('bell.wav');
   currentMode: 'session' | 'break' = 'session';
 
   emitTime() {
@@ -36,7 +38,6 @@ export class PomodoroService {
 
   setBreak(length: number) {
     this.break = length;
-    //this.emitTime();
   }
 
   stopMusic() {
@@ -44,21 +45,25 @@ export class PomodoroService {
     this.musicPause.pause();
   }
 
-
   start() {
-    if (this.running) return;
+    if (this.running) {
+      return;
+    }
     this.running = true;
     this.playMusic();
+    this.musicPlaying = true;
     this.intervalId = setInterval(() => {
       if (this.totalSec > 0) {
         this.totalSec--;
         this.emitTime();
       } else {
         this.stop();
-        this.stopMusic();
         this.timerDone.emit();
+        this.bell.play();
         this.switchMode();
-        this.start();
+        setTimeout(() => {
+          this.start();
+        }, 2000);
 
       }
     }, 1000);
@@ -75,17 +80,16 @@ export class PomodoroService {
     this.stop();
     this.totalSec = this.originalTime;
     this.emitTime();
-
   }
 
   playMusic() {
     if (this.currentMode == 'session') {
       this.musicStudy.play();
+      this.musicPlaying = true;
     } else {
       this.musicPause.play();
     }
   }
-
   private switchMode() {
     if (this.currentMode === 'session') {
       this.currentMode = 'break';
@@ -96,5 +100,15 @@ export class PomodoroService {
     }
     this.originalTime = this.totalSec;
     this.emitTime();
+  }
+
+  muteMusic() {
+    if (this.musicPlaying) {
+      this.stopMusic();
+      this.musicPlaying = false;
+    } else if (!this.musicPlaying) {
+      this.playMusic();
+      this.musicPlaying = true;
+    }
   }
 }

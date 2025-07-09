@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {PomodoroService} from '../pomodoro-service';
 
 @Component({
@@ -12,8 +12,9 @@ export class ModeSelection {
 
   constructor(private service: PomodoroService) {
     this.service.setSession(this.sessionLength);
+    this.service.setBreak(this.breakLength);
   }
-///moze vo sefvis da stais
+
   increase(type: 'session' | 'break') {
     if (type === 'session' && this.sessionLength < 60) {
       this.sessionLength++;

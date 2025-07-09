@@ -4,26 +4,3 @@
   letter-spacing: 4px;
   margin: 30px 0;
 }
-
-.custom-time {
-  margin-top: 20px;
-  color: white;
-}
-
-.custom-time input {
-  width: 60px;
-  padding: 5px;
-  font-size: 1rem;
-  border-radius: 5px;
-  margin: 0 10px;
-}
-
-.custom-time button {
-  padding: 5px 10px;
-  font-size: 1rem;
-  background-color: white;
-  color: #8e44ad;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}

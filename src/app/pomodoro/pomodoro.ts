@@ -1,5 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {PomodoroService} from '../pomodoro-service';
+import {Component} from '@angular/core';
 import {ModeSelection} from '../mode-selection/mode-selection';
 import {Buttons} from '../buttons/buttons';
 import {TimerComponent} from '../timer/timer';
@@ -15,5 +14,4 @@ import {TimerComponent} from '../timer/timer';
   styleUrl: './pomodoro.css'
 })
 export class Pomodoro {
-
 }

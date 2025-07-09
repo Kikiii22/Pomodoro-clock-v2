@@ -1,4 +1,4 @@
-import {Component, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {PomodoroService} from '../pomodoro-service';
 
 @Component({
@@ -20,5 +20,9 @@ export class Buttons {
 
   reset() {
     this.service.reset();
+  }
+
+  muteMusic() {
+    this.service.muteMusic();
   }
 }
